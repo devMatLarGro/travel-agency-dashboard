@@ -13,7 +13,7 @@ export async function clientLoader (){
         if (existingUser?.status === 'user') {
             return redirect('/');
         }
-        return existingUser?.$id ? existingUser.$id : await storeUserData();
+        return existingUser ? existingUser : await storeUserData();
     } catch (error) {
         console.error('Error clientLoader admin-layout', error);
         return redirect('sign-in');

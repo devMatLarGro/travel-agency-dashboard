@@ -1,14 +1,19 @@
-import { Link, NavLink } from "react-router";
+import {Link, NavLink, useLoaderData, useNavigate} from "react-router";
 import { sidebarItems } from "~/constants";
 import {cn} from "~/lib/utils";
+import {logoutUser} from "~/appwrite/auth";
 
 const NavItems = ({ handleClick }: {handleClick?: () => void}) => {
-    const user = {
-        name: 'John',
-        email: 'john.doea@gmail.com',
-        imageUrl: '/assets/images/david.webp'
-    }
+    // loads data from the nearest route loader => clientLoader in admin-layout.tsx
+    const user = useLoaderData();
+    const navigate = useNavigate();
 
+    console.log('user', user);
+
+    const handleLogout = async () => {
+        await logoutUser();
+        navigate('/sign-in');
+    }
     return (
         <section className="nav-items">
             <Link to='/' className="link-logo">
@@ -41,9 +46,7 @@ const NavItems = ({ handleClick }: {handleClick?: () => void}) => {
                         <h2>{user?.name}</h2>
                         <p>{user?.email}</p>
                     </article>
-                    <button onClick={() => {
-                            console.log('logout');
-                        }} className='cursor-pointer'>
+                    <button onClick={handleLogout} className='cursor-pointer'>
                         <img src='/assets/icons/logout.svg' alt="logout" className='size-6'/>
                     </button>
                 </footer>
