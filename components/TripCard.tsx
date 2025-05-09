@@ -32,7 +32,7 @@ const TripCard = ({id, name, location, imageUrl, tags, price}: TripCardProps) =>
                     </ChipsDirective>
                 </ChipListComponent>
             </div>
-            <article className="tripCard-pill">{price}</article> b
+            <article className="tripCard-pill">{price}</article>
         </Link>
     )
 }
