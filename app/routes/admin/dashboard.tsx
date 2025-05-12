@@ -8,10 +8,6 @@ export const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } = d
 
 export const clientLoader = async () => await getUser();
 
-export async function loader() {
-    throw new Error("some error thrown in a loader");
-}
-
 const Dashboard = ({loaderData}: Route.ComponentProps) => {
     const user = loaderData as User | null;
     return (
@@ -58,7 +54,6 @@ const Dashboard = ({loaderData}: Route.ComponentProps) => {
                     ))}
                 </div>
             </section>
-
         </main>
     )
 }
